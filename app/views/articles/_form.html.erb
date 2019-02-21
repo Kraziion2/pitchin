@@ -1,0 +1,62 @@
+<div class="container" >
+  <%= form_with(model: article, local: true) do |form| %>
+    <% if article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+        <ul>
+        <% article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description,class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :recruiting %>
+      <%= form.text_field :recruiting ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :skills %>
+      <%= form.text_area :skills,class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :employability %>
+      <%= form.text_field :employability,class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :country %>
+      <%= form.text_field :country ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :city %>
+      <%= form.text_field :city,class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :street %>
+      <%= form.text_field :street,class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.hidden_field :owner_id,value:current_user.id %>
+    </div>
+    <div class="actions form-group">
+      <%= form.submit 'Submit' ,class:"btn btn-success btn-lg" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,55 @@
+<div class="container" style="margin-left: 10%"> 
+  <%= form_with(model: profile, local: true) do |form| %>
+    <% if profile.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+        <ul>
+        <% profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :surname %>
+      <%= form.text_field :surname ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :education %>
+      <%= form.text_area :education ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :experience %>
+      <%= form.text_area :experience ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :knowledge %>
+      <%= form.text_area :knowledge ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :availability %>
+      <%= form.text_area :availability ,class:"form-control"%>
+    </div>
+    <div class="field form-group">
+      <%= form.hidden_field :user_id , value:current_user.id%>
+    </div>
+    <div class="field form-group">
+      <%= form.label :address %>
+      <%= form.text_area :address ,class:"form-control"%>
+    </div>
+    <div class="actions form-group ">
+      <%= form.submit 'Submit' , class:"btn btn-success btn-lg"%>
+    </div>
+  <% end %>
+</div>

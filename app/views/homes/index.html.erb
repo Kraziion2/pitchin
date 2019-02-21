@@ -1,0 +1,29 @@
+<div class="container"><h1>Dashboard</h1></div>
+<h1>Articles You Posted</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Recruiting</th>
+      <th>Skills</th>
+      <th>Employability</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+    	<% if current_user.id == article.owner_id %>
+	      <tr>
+	        <td><%= article.title %></td>
+	        <td><%= article.description %></td>
+	        <td><%= article.recruiting %></td>
+	        <td><%= article.skills %></td>
+	        <td><%= article.employability %></td>
+	        <td><%= link_to 'Show', article %></td>
+	      </tr>
+    	<%end%>
+    <% end %>
+  </tbody>
+</table>
