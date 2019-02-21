@@ -2,10 +2,10 @@ class ProfilesController < InheritedResources::Base
 	before_action :authenticate_user!
 	def new
 		if user_signed_in?
-			unless Profile.find_by(user_id:current_user.id)
-				@profile = Profile.new
-			else
+			unless Profile.find_by(user_id:current_user.id).nil?
 				redirect_to homes_index_path
+			else
+				@profile =Profile.new
 			end	
 		end	
 	end	

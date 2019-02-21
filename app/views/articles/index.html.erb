@@ -16,15 +16,17 @@
 
   <tbody>
     <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= article.recruiting %></td>
-        <td><%= article.skills %></td>
-        <td><%= article.employability %></td>
-
-        <td><%= link_to 'Show', article %></td>
-      </tr>
+      <% if !current_user.agreement_found(article.id)%>
+        <tr>
+          <td><%= article.title %></td>
+          <td><%= article.description %></td>
+          <td><%= article.recruiting %></td>
+          <td><%= article.skills %></td>
+          <td><%= article.employability %></td>
+          <td><%= link_to 'Show', article %></td>
+          <td><%= link_to 'Apply', agreement_article_path(article) %></td>
+        </tr>
+      <%end%>
     <% end %>
   </tbody>
 </table>

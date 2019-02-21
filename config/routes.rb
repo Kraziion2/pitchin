@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :articles
+  get 'agreement/new'
+  resources :articles do 
+  	member do 
+  		get 'agreement'
+      get 'cancel_agreement'
+  	  get 'reject_agreement' 
+    end	
+  end	
   resources :profiles
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
