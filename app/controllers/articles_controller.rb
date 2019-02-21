@@ -23,9 +23,8 @@ class ArticlesController < InheritedResources::Base
 	end	
 	def cancel_agreement
 		@article = Article.find(params[:id])
-		@agree= Agreement.find(user_id:current_user.id,article_id:@article.id)
 		if current_user.articles.delete(@article.id)
-			@agree.destroy
+			
 			redirect_to homes_index_path ,notice:"You have successfully cancel you invitation"
 		else
 			redirect_to homes_index_path ,notice:"Destroy"	
@@ -40,6 +39,10 @@ class ArticlesController < InheritedResources::Base
 		else
 			redirect_to homes_index_path ,notice:"Destroy"	
 		end	
+	end	
+	def invitation_user
+		@user= User.find(params[:id])
+  		@profile = Profile.find_by(user_id:@user.id)
 	end	
   private
 

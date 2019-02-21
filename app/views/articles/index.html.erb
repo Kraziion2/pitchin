@@ -16,7 +16,8 @@
 
   <tbody>
     <% @articles.each do |article| %>
-      <% if !current_user.agreement_found(article.id)%>
+    <% unless current_user.id == article.owner_id%>
+      <% if !current_user.agreement_found(article.id) %>
         <tr>
           <td><%= article.title %></td>
           <td><%= article.description %></td>
@@ -27,6 +28,7 @@
           <td><%= link_to 'Apply', agreement_article_path(article) %></td>
         </tr>
       <%end%>
+     <%end%> 
     <% end %>
   </tbody>
 </table>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   		get 'agreement'
       get 'cancel_agreement'
   	  get 'reject_agreement' 
+      get 'invitation_user'
     end	
   end	
   resources :profiles
