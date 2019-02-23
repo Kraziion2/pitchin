@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_20_180512) do
+ActiveRecord::Schema.define(version: 2019_02_22_214738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2019_02_20_180512) do
     t.index ["user_id"], name: "index_agreements_on_user_id"
   end
 
+  create_table "approvals", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_approvals_on_article_id"
+    t.index ["user_id"], name: "index_approvals_on_user_id"
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -62,6 +71,16 @@ ActiveRecord::Schema.define(version: 2019_02_20_180512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_articles_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "homes", force: :cascade do |t|
@@ -76,10 +95,14 @@ ActiveRecord::Schema.define(version: 2019_02_20_180512) do
     t.text "experience"
     t.text "knowledge"
     t.text "availability"
-    t.text "address"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "city"
+    t.string "country"
+    t.string "street"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -98,5 +121,8 @@ ActiveRecord::Schema.define(version: 2019_02_20_180512) do
 
   add_foreign_key "agreements", "articles"
   add_foreign_key "agreements", "users"
+  add_foreign_key "approvals", "articles"
+  add_foreign_key "approvals", "users"
+  add_foreign_key "articles", "categories"
   add_foreign_key "profiles", "users"
 end

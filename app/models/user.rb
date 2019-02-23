@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :username ,presence:true
+  has_one :profile 
   has_many :agreements
   has_many :articles ,through: :agreements
   devise :database_authenticatable, :registerable,
@@ -19,6 +20,11 @@ class User < ApplicationRecord
       end 
     end
     found
+  end 
+  def approval_found article_id
+    @approval = Approval.find_by(article_id: article_id)
+    found = false
+    found = true if @approval
   end 
 	
 end

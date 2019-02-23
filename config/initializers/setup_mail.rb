@@ -5,7 +5,7 @@ ActionMailer::Base.smtp_settings = {
   :port                 =>  587,
   :authentication       =>  :plain,
   :user_name            =>  'apikey',
-  :password             =>  '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',
+  :password             =>  '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',
   :domain               =>  'heroku.com',
   :enable_starttls_auto  =>  true
 }

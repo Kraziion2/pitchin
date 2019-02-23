@@ -20,7 +20,7 @@ class ProfilesController < InheritedResources::Base
   private
 
     def profile_params
-      params.require(:profile).permit(:name, :surname, :education, :experience, :knowledge, :availability, :address, :user_id)
+      params.require(:profile).permit(:name, :surname, :education, :experience, :knowledge, :availability,:country, :city, :street, :user_id)
     end
 end
 

@@ -1,0 +1,29 @@
+
+<h1>Active Articles</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Recruiting</th>
+      <th>Skills</th>
+      <th>Employability</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @approvals.each do |approval| %>
+        <tr>
+          <% article = Article.find(approval.article_id)%>
+          <td><%= article.title %></td>
+          <td><%= article.description %></td>
+          <td><%= article.recruiting %></td>
+          <td><%= article.skills %></td>
+          <td><%= article.employability %></td>
+          <td><%= link_to 'Show', article %></td>
+          <td><%= link_to 'Cancel',cancel_approval_article_path(approval.id) %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

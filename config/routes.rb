@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   get 'agreement/new'
   resources :articles do 
   	member do 
@@ -6,7 +7,16 @@ Rails.application.routes.draw do
       get 'cancel_agreement'
   	  get 'reject_agreement' 
       get 'invitation_user'
-    end	
+      get 'delete_article'
+      get 'accept_approval'
+      get 'cancel_approval'
+    end	 
+    collection do 
+      get 'send_invitation'
+      get 'invitation'
+      get 'active_user'
+      get 'active_article'
+    end 
   end	
   resources :profiles
   devise_for :admin_users, ActiveAdmin::Devise.config

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Recruiting</th>
+      <th>Skills</th>
+      <th>Employability</th>
+      <th>Distance</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+    <% unless current_user.id == article.owner_id%>
+      <% if !current_user.agreement_found(article.id) %>
+        <tr>
+          <td><%= article.title %></td>
+          <td><%= article.description %></td>
+          <td><%= article.recruiting %></td>
+          <td><%= article.skills %></td>
+          <td><%= article.employability %></td>
+          <td><%= @profile.distance_to(article).round(2) %>miles</td>
+          <td><%= link_to 'Show', article %></td>
+          <td><%= link_to 'Apply', agreement_article_path(article) %></td>
+        </tr>
+      <%end%>
+     <%end%> 
+    <% end %>
+  </tbody>
+</table>
+
+
+

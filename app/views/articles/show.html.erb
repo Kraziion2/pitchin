@@ -25,6 +25,12 @@
     <strong>Employability:</strong>
     <%= @article.employability %>
   </p>
+  <%if current_user.id != @article.owner_id%>
+  <p>
+    <strong>Distance:</strong>
+    <%= @profile.distance_to(@article).round(2) %> miles
+  </p>
+  <%end%>
 
   <% if current_user.id == @article.owner_id %>
     <%= link_to 'Edit', edit_article_path(@article) %> |

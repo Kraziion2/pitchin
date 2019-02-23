@@ -44,12 +44,23 @@
     <div class="field form-group">
       <%= form.hidden_field :user_id , value:current_user.id%>
     </div>
+   
     <div class="field form-group">
-      <%= form.label :address %>
-      <%= form.text_area :address ,class:"form-control"%>
+      <%= form.label :country %>
+      <%= form.text_field :country ,class:"form-control"%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :city %>
+      <%= form.text_field :city,class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :street %>
+      <%= form.text_field :street,class:"form-control" %>
     </div>
     <div class="actions form-group ">
-      <%= form.submit 'Submit' , class:"btn btn-success btn-lg"%>
+      <%= form.submit  'Submit', class:"btn btn-success btn-lg"%>
     </div>
   <% end %>
 </div>
