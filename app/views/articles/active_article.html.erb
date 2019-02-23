@@ -30,5 +30,5 @@
   </tbody>
 </table>
 <div class="container">
-<%= will_paginate @approvals ,renderer: BootstrapPagination::Rails,previous_label:"older" ,next_label:"next",inner_window:1, outer_window:0 %>
+<%= paginate @approvals %>
 </div>

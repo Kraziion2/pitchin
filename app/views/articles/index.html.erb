@@ -35,9 +35,6 @@
           <td><%= article.description %></td>
           <td><%= @profile.distance_to(article).round(2) %>miles</td>
           <td><%= link_to 'Show', article %></td>
-          <% if user_signed_in?%>
-          <td><%= link_to 'Apply', agreement_article_path(article) %></td>
-          <%end%>
         </tr>
       <%end%>  
     <%end%> 
@@ -52,6 +49,6 @@
   </tbody>
 </table>
 <div class="container">
-<%= will_paginate @articles ,renderer: BootstrapPagination::Rails,previous_label:"older" ,next_label:"next",inner_window:1, outer_window:0 %>
+<%= paginate @articles %>
 </div>
 

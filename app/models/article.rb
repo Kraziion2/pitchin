@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+	paginates_per 10
 	validates :title ,:description,:recruiting,:skills,:employability,:country,:city,:street ,presence:true
 	has_many :agreements
 	has_many :users , through: :agreements

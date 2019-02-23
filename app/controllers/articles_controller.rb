@@ -1,5 +1,4 @@
 class ArticlesController < InheritedResources::Base
-require 'will_paginate/array' 
 	before_action :authenticate_user! ,except:[:index,:show]
 	def index
 		if user_signed_in?
@@ -7,12 +6,12 @@ require 'will_paginate/array'
 			@profile=Profile.find_by(user_id:current_user.id)
 			country = @profile.country.downcase
 			city = @profile.city.downcase
-			@articles=Article.where(city:city,country:country).paginate(:page => params[:page],:per_page =>10)
+			@articles=Article.where(city:city,country:country).page(params[:page])
 			else
 				redirect_to new_profile_path 
 			end	
 		else
-			@articles = Article.all.paginate(:page => params[:page],:per_page =>10)
+			@articles = Article.all.page(params[:page])
 		end	
 	    @categories=Category.all
 	end	
@@ -72,7 +71,7 @@ require 'will_paginate/array'
 	end	
 	def active_article
 		@approvals = Approval.where(user_id:current_user.id)
-		@approvals = @approvals.paginate(:page =>params[:page],:per_page =>10)
+		@approvals = @approvals.page(params[:page])
 	end	
 	def active_user
 		@approvals=Approval.all
@@ -80,7 +79,7 @@ require 'will_paginate/array'
 	def send_invitation
 		@articles=Article.all
 		@agreements = current_user.articles
-	    @agreements=@agreements.paginate(:page =>params[:page],:per_page =>10)
+	    @agreements=@agreements.page(params[:page])
 	end	
 	def invitation
 		@articles=Article.all
