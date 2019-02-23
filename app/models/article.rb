@@ -23,5 +23,4 @@ class Article < ApplicationRecord
 			user.articles.delete(article.id)
 		end	
 	end	
-	
 end

@@ -1,18 +1,36 @@
 class ArticlesController < InheritedResources::Base
+require 'will_paginate/array' 
+	before_action :authenticate_user! ,except:[:index,:show]
 	def index
-		@profile=Profile.find_by(user_id:current_user.id)
-		@articles=Article.where(city:@profile.city,country:@profile.country)
-		@categories=Category.all
+		if user_signed_in?
+			if Profile.find_by(user_id:current_user.id) 
+			@profile=Profile.find_by(user_id:current_user.id)
+			country = @profile.country.downcase
+			city = @profile.city.downcase
+			@articles=Article.where(city:city,country:country).paginate(:page => params[:page],:per_page =>10)
+			else
+				redirect_to new_profile_path 
+			end	
+		else
+			@articles = Article.all.paginate(:page => params[:page],:per_page =>10)
+		end	
+	    @categories=Category.all
 	end	
 	def new
 		@article = Article.new
 	end	
 	def show
-		@article=Article.find(params[:id]) 
-		@profile=Profile.find_by(user_id:current_user.id)
+		if user_signed_in?
+			@article=Article.find(params[:id]) 
+			@profile=Profile.find_by(user_id:current_user.id)
+		else
+			@article=Article.find(params[:id]) 
+		end	
 	end	
 	def create
 		@article = Article.new(article_params)
+		@article.country= @article.country.downcase
+		@article.city= @article.city.downcase
 		if @article.save
 			redirect_to homes_index_path
 		else
@@ -47,7 +65,6 @@ class ArticlesController < InheritedResources::Base
 			else
 				CancelApprovalMailer.employee_cancel(User.find(art.owner_id),art,user).deliver
 				redirect_to active_article_articles_path ,notice:"Successfully Remove Article"
-			
 			end	
 		else
 			redirect_to active_user_articles_path ,notice:"unsuccessfull"
@@ -55,6 +72,7 @@ class ArticlesController < InheritedResources::Base
 	end	
 	def active_article
 		@approvals = Approval.where(user_id:current_user.id)
+		@approvals = @approvals.paginate(:page =>params[:page],:per_page =>10)
 	end	
 	def active_user
 		@approvals=Approval.all
@@ -62,6 +80,7 @@ class ArticlesController < InheritedResources::Base
 	def send_invitation
 		@articles=Article.all
 		@agreements = current_user.articles
+	    @agreements=@agreements.paginate(:page =>params[:page],:per_page =>10)
 	end	
 	def invitation
 		@articles=Article.all

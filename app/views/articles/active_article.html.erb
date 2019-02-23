@@ -3,6 +3,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Owner</th>
       <th>Title</th>
       <th>Description</th>
       <th>Recruiting</th>
@@ -16,6 +17,7 @@
     <% @approvals.each do |approval| %>
         <tr>
           <% article = Article.find(approval.article_id)%>
+          <td><%= User.find(article.owner_id).username%></td>
           <td><%= article.title %></td>
           <td><%= article.description %></td>
           <td><%= article.recruiting %></td>
@@ -27,3 +29,6 @@
     <% end %>
   </tbody>
 </table>
+<div class="container">
+<%= will_paginate @approvals ,renderer: BootstrapPagination::Rails,previous_label:"older" ,next_label:"next",inner_window:1, outer_window:0 %>
+</div>
