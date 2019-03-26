@@ -18,21 +18,20 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <!--Main Menu Items -->
     <ul class="navbar-nav w-100">
-      <li class="nav-item active"><%= link_to "Pitch In" ,homes_homepage_path,class:"nav-link"%></li>
-      <li class="nav-item"><%= link_to 'Ideas' , articles_path ,class:"nav-link"%></li>
+      <li class="nav-item active"><%= link_to "PitchIn" ,homes_homepage_path,class:"nav-link"%></li>
         <% if user_signed_in?%>
         <% if Profile.find_by(user_id:current_user.id)%>
-          <li class="nav-item"><%= link_to 'Post Article' ,new_article_path , class:"nav-link"%></li>
+          <li class="nav-item"><%= link_to 'Ideas' , articles_path ,class:"nav-link"%></li>
+          <li class="nav-item"><%= link_to 'Post Idea' ,new_article_path , class:"nav-link"%></li>
           <li class="nav-item"><%= link_to "My Ideas" ,homes_index_path,class:"nav-link"%></li>
             
       <li class="nav-item dropdown ml-auto">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
           Profile
         </a>
         <!--Dropdown Menu on the Right -->
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu dropdown-menu-right">
           <ul>
-
           <li class="drop-item"><%= link_to 'Edit Profile' ,edit_profile_path(Profile.find_by(user_id:current_user.id)), class:"dropdown-item"%></li>
           <li class="drop-item"><%= link_to 'Send Invitation' ,send_invitation_articles_path , class:"dropdown-item" %></li>
           <li class="drop-item"><%= link_to 'Invitation Recieved' ,invitation_articles_path , class:"dropdown-item"%></li>
