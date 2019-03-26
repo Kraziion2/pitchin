@@ -1,0 +1,5 @@
+<div class="article-body"><%= truncate(article.skills, length:100) %></div>
+                    <h5 class="article-body"><%= truncate(article.skills, length:100) %></h5>
+                    <h5 class="article-body"><%= truncate(article.employability, length:100) %></h5>
+                    <h5 class="article-body"><%= truncate(article.recruiting, length:100) %></h5>
+                    <h5 class="article-body"><%= @profile.distance_to(article).round(2) %>miles</h5>
