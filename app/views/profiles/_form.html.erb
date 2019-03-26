@@ -1,4 +1,4 @@
-<div class="container" style="margin-left: 10%"> 
+<div class="container" style="margin: 0 auto %"> 
   <%= form_with(model: profile, local: true) do |form| %>
     <% if profile.errors.any? %>
       <div id="error_explanation">
@@ -59,8 +59,9 @@
       <%= form.label :street %>
       <%= form.text_field :street,class:"form-control" %>
     </div>
-    <div class="actions form-group ">
+    <div align="center" class="actions form-group ">
       <%= form.submit  'Submit', class:"btn btn-success btn-lg"%>
     </div>
+    
   <% end %>
 </div>

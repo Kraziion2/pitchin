@@ -31,6 +31,7 @@ class ArticlesController < InheritedResources::Base
 		@article.country= @article.country.downcase
 		@article.city= @article.city.downcase
 		if @article.save
+			flash[:success] = "Article created successfully"
 			redirect_to homes_index_path
 		else
 			render 'new'

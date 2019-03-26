@@ -1,16 +1,7 @@
 <div class="container" >
   <%= form_with(model: article, local: true) do |form| %>
-    <% if article.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-        <ul>
-        <% article.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+  
+  
     <div class="field">
     <%= form.label :category %><br>
     <%= form.collection_select :category_id,Category.all, :id, :name %>
@@ -58,8 +49,9 @@
     <div class="field form-group">
       <%= form.hidden_field :owner_id,value:current_user.id %>
     </div>
-    <div class="actions form-group">
+    <div align="center" class="actions form-group">
       <%= form.submit 'Submit' ,class:"btn btn-success btn-lg" %>
+      <%= link_to 'Back', articles_path,class:"btn btn-outline-success my-2 my-sm-0" %>
     </div>
   <% end %>
 </div>

@@ -25,6 +25,12 @@ body {
 	padding-left: 18px;
 }
 
+.drop-item {
+	padding-right: 40px;
+	margin: 0 auto;
+	text-align: center;
+	list-style-type: none;
+}
 
 .rightcolumn {
 	float: right;
@@ -36,17 +42,31 @@ body {
 .bottomcolumn {
 	width: 50%;
 	float: right;
+	margin: 0 auto;
 	padding-bottom: 40px;
 	padding-top: 40px;	 
 }
 
-.container1 {
+.middlecolumn {
 	width: 100%;
-	border-color: orange;
-	border-width: 9px;
-	border-style: solid;
 
 }
+
+.view-article {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.container1 {
+	width: 100%;
+}
+
+
+.buttons-btm {
+	margin: 10px;
+	padding: 10px;
+}
+
 .category-name-listing {
 	list-style: none;
 }
@@ -103,9 +123,15 @@ body {
 	margin-top: 20px;
 }
 
+.notice {
+	color: #00529B;
+	background-color: #BDE5F8;
+}
+
 @media screen and (max-width: 800px){
 	.leftcolumn, .rightcolumn {
 	width: 100%;
 	padding: 0;
 	}
+
 }

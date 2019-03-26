@@ -1,41 +1,45 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Title:</strong>
-    <%= @article.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= @article.description %>
-  </p>
-
-  <p>
-    <strong>Recruiting:</strong>
-    <%= @article.recruiting %>
-  </p>
-
-  <p>
-    <strong>Skills:</strong>
-    <%= @article.skills %>
-  </p>
-
-  <p>
-    <strong>Employability:</strong>
-    <%= @article.employability %>
-  </p>
-  <% if  user_signed_in? && current_user.id != @article.owner_id  %>
-  <p>
-    <strong>Distance:</strong>
-    <%= @profile.distance_to(@article).round(2) %> miles
-  </p>
-  <%end%>
-  <% if user_signed_in? &&  current_user.id == @article.owner_id %>
-    <%= link_to 'Edit', edit_article_path(@article) %> |
-  <%end%>
-  <% if user_signed_in?%>
-      <td><%= link_to 'Apply', agreement_article_path(@article) %></td>
-  <%end%>      
-  <%= link_to 'Back', articles_path %>
+<div class="container1">
+  <div class="view-article">
+    <div class="card"> 
+      <h1 align="center"><strong>Title</strong></h1>
+      <h3 align="center" class="article-body"><%= @article.title %></h3>
+    </div>
+  </div>  
+  <div class="view-article">
+  <div class="card">
+    <h3 align="center"><strong>Description</strong></h3>
+    <h5 class="article-body"><%= @article.description %></h5>
+  </div>
+  </div>
+  <div class="view-article">
+  <div class="card">
+    <h3 align="center"><strong>Skills</strong></h3>
+    <h5 class="article-body"><%= @article.description %></h5>
+  </div>
+  </div>
+  <div class="view-article">
+  <div class="card">
+    <h3 align="center"><strong>Recruiting</strong></h3>
+    <h5 class="article-body"><%= @article.recruiting %></h5>
+  </div>
+  </div>
+  <div class="view-article">
+  <div class="card">
+    <h3 align="center"><strong>Availability</strong></h3>
+    <h5 class="article-body"><%= @article.employability %></h5>
+  </div>
+  </div>
 </div>
+  <div align="center" class="buttons-btm">
+    <% if user_signed_in? &&  current_user.id == @article.owner_id %>
+      <%= link_to 'Edit', edit_article_path(@article),class:"btn btn-outline-success my-2 my-sm-0" %> |
+    <%end%>
+    <% if user_signed_in? && current_user.id == !@article.owner_id%>
+        <td><%= link_to 'Apply', agreement_article_path(@article),class:"btn btn-outline-success my-2 my-sm-0" %></td>
+    <%end%>      
+    <%= link_to 'Back', articles_path,class:"btn btn-outline-success my-2 my-sm-0" %>
+  </div>
+</div>
+
