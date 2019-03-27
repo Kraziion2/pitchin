@@ -18,7 +18,7 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <!--Main Menu Items -->
     <ul class="navbar-nav w-100">
-      <li class="nav-item active"><%= link_to "PitchIn" ,homes_homepage_path,class:"nav-link"%></li>
+      <li class="nav-item active"><%= link_to "PitchIn" ,homes_home_path,class:"nav-link"%></li>
         <% if user_signed_in?%>
         <% if Profile.find_by(user_id:current_user.id)%>
           <li class="nav-item"><%= link_to 'Ideas' , articles_path ,class:"nav-link"%></li>
@@ -37,8 +37,12 @@
           <li class="drop-item"><%= link_to 'Invitation Recieved' ,invitation_articles_path , class:"dropdown-item"%></li>
           <li class="drop-item"><%= link_to 'Active Employee' ,active_user_articles_path , class:"dropdown-item"%></li>
           <li class="drop-item"><%= link_to 'Active Article' ,active_article_articles_path , class:"dropdown-item"%></li>
-          <%end%>
           <li class="drop-item"><%= link_to 'Sign Out' ,destroy_user_session_path , method: :delete ,class:"dropdown-item"%></li>
+
+          <% else %>
+          <li><%= link_to 'Sign Out' ,destroy_user_session_path , method: :delete ,class:"btn btn-outline-success my-2 my-sm-0"%></li>
+
+          <%end%>
           </ul>
           <% else %>
           <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
