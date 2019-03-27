@@ -1,3 +1,5 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <div class="container1">
@@ -36,7 +38,7 @@
     <% if user_signed_in? &&  current_user.id == @article.owner_id %>
       <%= link_to 'Edit', edit_article_path(@article),class:"btn btn-outline-success my-2 my-sm-0" %> |
     <%end%>
-    
+
     <% if user_signed_in? %>
         <td><%= link_to 'Apply', agreement_article_path(@article),class:"btn btn-outline-success my-2 my-sm-0" %></td>
     <%end%>      
